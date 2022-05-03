@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'media',
+    'logentry',
 ]
 
 MIDDLEWARE = [
@@ -80,10 +81,6 @@ WSGI_APPLICATION = 'nagare.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
         'ENGINE': os.environ['DB_ENGINE'],
         'NAME': os.environ['DB_NAME'],
