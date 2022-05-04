@@ -1,16 +1,15 @@
 from rest_framework import serializers
-from .models import LogEntry, ReadingLogEntry, ListeningLogEntry
+from .models import ReadingLogEntry, ListeningLogEntry
+from media.models import Media
 
 class LogEntrySerializer(serializers.Serializer):
-    pk = serializers.CharField()
-    created = serializers.CharField()
+    created = serializers.DateField(read_only=True)
     notes = serializers.CharField()
-    log_time = serializers.CharField()
-    fk = serializers.CharField()
+    log_time = serializers.TimeField()
+    media_pk = serializers.PrimaryKeyRelatedField(queryset=Media.objects.all())
 
     class Meta:
-        model = LogEntry
-        fields = ['pk', 'created', 'notes', 'log_time', 'fk']
+        fields = ['pk', 'created', 'notes', 'log_time', 'media_pk']
 
 class ReadingLogEntrySerializer(LogEntrySerializer, serializers.ModelSerializer):
     class Meta:
